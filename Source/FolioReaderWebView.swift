@@ -173,7 +173,7 @@ open class FolioReaderWebView: UIWebView {
         do {
             let json = try JSONSerialization.jsonObject(with: jsonData!, options: []) as! NSArray
             let dic = json.firstObject as! [String: String]
-            let rect = CGRectFromString(dic["rect"]!)
+            _ = CGRectFromString(dic["rect"]!)
             guard let startOffset = dic["startOffset"] else { return }
             guard let endOffset = dic["endOffset"] else { return }
             
