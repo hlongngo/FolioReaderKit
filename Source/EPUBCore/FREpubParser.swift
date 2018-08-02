@@ -82,29 +82,29 @@ class FREpubParser: NSObject, SSZipArchiveDelegate {
         epubPathToRemove = withEpubPath
         shouldRemoveEpub = removeEpub
 
-        var isDir: ObjCBool = false
+//        var isDir: ObjCBool = false
         let fileManager = FileManager.default
         let bookName = withEpubPath.lastPathComponent
         var bookBasePath = ""
 
-        if let path = unzipPath, fileManager.fileExists(atPath: path) {
-            bookBasePath = path
-        } else {
-            bookBasePath = kApplicationDocumentsDirectory
-        }
+//        if let path = unzipPath, fileManager.fileExists(atPath: path) {
+//            bookBasePath = path
+//        } else {
+//            bookBasePath = kApplicationDocumentsDirectory
+//        }
 
-        bookBasePath = bookBasePath.appendingPathComponent(bookName)
+        bookBasePath = unzipPath!.appendingPathComponent(bookName)
 
-        guard fileManager.fileExists(atPath: withEpubPath) else {
+        guard fileManager.fileExists(atPath: bookBasePath) else {
             throw FolioReaderError.bookNotAvailable
         }
 
         // Unzip if necessary
-        let needsUnzip = !fileManager.fileExists(atPath: bookBasePath, isDirectory:&isDir) || !isDir.boolValue
-
-        if needsUnzip {
-            SSZipArchive.unzipFile(atPath: withEpubPath, toDestination: bookBasePath, delegate: self)
-        }
+//        let needsUnzip = !fileManager.fileExists(atPath: bookBasePath, isDirectory:&isDir) || !isDir.boolValue
+//
+//        if needsUnzip {
+//            SSZipArchive.unzipFile(atPath: withEpubPath, toDestination: bookBasePath, delegate: self)
+//        }
 
         // Skip from backup this folder
         try addSkipBackupAttributeToItemAtURL(URL(fileURLWithPath: bookBasePath, isDirectory: true))

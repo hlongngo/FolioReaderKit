@@ -43,6 +43,7 @@
 		CAF233291C57E1F400CB930C /* SharingProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF233281C57E1F400CB930C /* SharingProviderTests.swift */; };
 		DB8597912791266AA602B5B1 /* Pods_FolioReaderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27131F41E20F15F72AAF7176 /* Pods_FolioReaderTests.framework */; };
 		DEF42BA2DD4348929475052F /* Pods_MultipleInstance_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843E2EEC2F784021400961A9 /* Pods_MultipleInstance_Example.framework */; };
+		F58BD3862110B41A0036B70A /* 111.epub in Resources */ = {isa = PBXBuildFile; fileRef = F58BD3852110B41A0036B70A /* 111.epub */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		D12066631D65FABD006E1D18 /* Storyboard-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Storyboard-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C82C879F323C6E960F882B /* Pods-StoryboardExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StoryboardExample/Pods-StoryboardExample.debug.xcconfig"; sourceTree = "<group>"; };
 		F4CBB0C2C0FDFA3E1648DB43 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
+		F58BD3852110B41A0036B70A /* 111.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = 111.epub; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 		3AAA8B7D1E9BB8B700A47E5A /* Storyboard-Example */ = {
 			isa = PBXGroup;
 			children = (
+				F58BD3852110B41A0036B70A /* 111.epub */,
 				3AAA8B7E1E9BB8B700A47E5A /* AppDelegate.swift */,
 				3AAA8B841E9BB8B700A47E5A /* ExampleFolioReaderContainer.swift */,
 				3AAA8B801E9BB8B700A47E5A /* LaunchScreen.storyboard */,
@@ -333,7 +336,6 @@
 				CA10C12F1C572A4B0049165D /* Resources */,
 				C1392FF51E4FD15EBB5AA8DD /* [CP] Embed Pods Frameworks */,
 				E82F486563C1547E0775A59F /* 📦 Embed Pods Frameworks */,
-				064D38CE83FACC358B7C0EC8 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -398,7 +400,7 @@
 					};
 					D12066621D65FABD006E1D18 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 99AHAA343Q;
+						DevelopmentTeam = 7LK5U3KGAC;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -461,6 +463,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AAA8BA41E9BB94B00A47E5A /* The Adventures Of Sherlock Holmes - Adventure I.epub in Resources */,
+				F58BD3862110B41A0036B70A /* 111.epub in Resources */,
 				3AAA8B881E9BB8B700A47E5A /* LaunchScreen.storyboard in Resources */,
 				3AAA8B891E9BB8B700A47E5A /* Main.storyboard in Resources */,
 				3AAA8BA71E9BB94B00A47E5A /* The Silver Chair.epub in Resources */,
@@ -487,21 +490,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		064D38CE83FACC358B7C0EC8 /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FolioReaderTests/Pods-FolioReaderTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1D8126CC73301F2413345444 /* [CP] Check Pods Manifest.lock */ = {
@@ -1049,7 +1037,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 99AHAA343Q;
+				DEVELOPMENT_TEAM = 7LK5U3KGAC;
 				INFOPLIST_FILE = "Storyboard-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.folioreader.example.storyboard;
@@ -1065,7 +1053,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 99AHAA343Q;
+				DEVELOPMENT_TEAM = 7LK5U3KGAC;
 				INFOPLIST_FILE = "Storyboard-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.folioreader.example.storyboard;
