@@ -57,6 +57,22 @@ class FolioReaderChapterList: UITableViewController {
         // Create TOC list
         self.tocItems = self.book.flatTableOfContents
     }
+    
+    // Ngo custome function
+    
+    func hasChapterOnDisk(_ chapterIndex: Int) -> Bool {
+        return true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if
+            let currentPageNumber = self.folioReader.readerCenter?.currentPageNumber,
+            hasChapterOnDisk(currentPageNumber) {
+            let indexPath = IndexPath(row: currentPageNumber - 1, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
+        }
+    }
 
     // MARK: - Table view data source
 
