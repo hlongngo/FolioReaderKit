@@ -35,7 +35,7 @@ class FolioReaderChapterList: UITableViewController {
         self.delegate = delegate
         self.book = book
 
-        super.init(style: UITableViewStyle.plain)
+        super.init(style: UITableView.Style.plain)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -51,11 +51,24 @@ class FolioReaderChapterList: UITableViewController {
         self.tableView.backgroundColor = self.folioReader.isNight(self.readerConfig.nightModeMenuBackground, self.readerConfig.menuBackgroundColor)
         self.tableView.separatorColor = self.folioReader.isNight(self.readerConfig.nightModeSeparatorColor, self.readerConfig.menuSeparatorColor)
 
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 50
 
         // Create TOC list
         self.tocItems = self.book.flatTableOfContents
+      
+        // Jump to the current chapter
+        DispatchQueue.main.async {
+          
+            if
+                let currentPageNumber = self.folioReader.readerCenter?.currentPageNumber,
+                let reference = self.book.spine.spineReferences[safe: currentPageNumber - 1],
+                let index = self.tocItems.firstIndex(where: { $0.resource == reference.resource }) {
+              
+                  let indexPath = IndexPath(row: index, section: 0)
+                  self.tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+            }
+        }
     }
     
     // Ngo custome function
@@ -88,7 +101,7 @@ class FolioReaderChapterList: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: kReuseCellIdentifier, for: indexPath) as! FolioReaderChapterListCell
 
         cell.setup(withConfiguration: self.readerConfig)
-        let tocReference = tocItems[(indexPath as NSIndexPath).row]
+        let tocReference = tocItems[indexPath.row]
         let isSection = tocReference.children.count > 0
 
         cell.indexLabel?.text = tocReference.title.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -111,7 +124,7 @@ class FolioReaderChapterList: UITableViewController {
             let reference = self.book.spine.spineReferences[safe: currentPageNumber - 1],
             (tocReference.resource != nil) {
             let resource = reference.resource
-            cell.indexLabel?.textColor = (tocReference.resource == resource ? self.readerConfig.tintColor : self.readerConfig.menuTextColor)
+            cell.indexLabel?.textColor = (tocReference.resource == resource ? self.readerConfig.menuTextColorSelected : self.readerConfig.menuTextColor)
         }
 
         cell.layoutMargins = UIEdgeInsets.zero

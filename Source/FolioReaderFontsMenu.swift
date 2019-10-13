@@ -97,7 +97,8 @@ class FolioReaderFontsMenu: UIViewController, SMSegmentViewDelegate, UIGestureRe
         view.addGestureRecognizer(tapGesture)
 
         // Menu view
-        let visibleHeight: CGFloat = self.readerConfig.canChangeScrollDirection ? 222 : 170
+        var visibleHeight: CGFloat = self.readerConfig.canChangeScrollDirection ? 222 : 170
+        visibleHeight = self.readerConfig.canChangeFontStyle ? visibleHeight : visibleHeight - 55
         menuView = UIView(frame: CGRect(x: 0, y: view.frame.height-visibleHeight, width: view.frame.width, height: view.frame.height))
         menuView.backgroundColor = self.folioReader.isNight(self.readerConfig.nightModeMenuBackground, UIColor.white)
         menuView.autoresizingMask = .flexibleWidth
@@ -141,7 +142,7 @@ class FolioReaderFontsMenu: UIViewController, SMSegmentViewDelegate, UIGestureRe
         dayNight.tag = 1
         dayNight.addSegmentWithTitle(self.readerConfig.localizedFontMenuDay, onSelectionImage: sunSelected, offSelectionImage: sunNormal)
         dayNight.addSegmentWithTitle(self.readerConfig.localizedFontMenuNight, onSelectionImage: moonSelected, offSelectionImage: moonNormal)
-        dayNight.selectSegmentAtIndex(self.folioReader.nightMode.hashValue)
+        dayNight.selectSegmentAtIndex(self.folioReader.nightMode ? 1 : 0)
         menuView.addSubview(dayNight)
 
 
@@ -151,7 +152,8 @@ class FolioReaderFontsMenu: UIViewController, SMSegmentViewDelegate, UIGestureRe
         menuView.addSubview(line)
 
         // Fonts adjust
-        let fontName = SMSegmentView(frame: CGRect(x: 15, y: line.frame.height+line.frame.origin.y, width: view.frame.width-30, height: 55),
+        let fontNameHeight: CGFloat = self.readerConfig.canChangeFontStyle ? 55: 0
+        let fontName = SMSegmentView(frame: CGRect(x: 15, y: line.frame.height+line.frame.origin.y, width: view.frame.width-30, height: fontNameHeight),
                                      separatorColour: UIColor.clear,
                                      separatorWidth: 0,
                                      segmentProperties:  [
@@ -198,7 +200,7 @@ class FolioReaderFontsMenu: UIViewController, SMSegmentViewDelegate, UIGestureRe
         slider.tintColor = self.readerConfig.nightModeSeparatorColor
         slider.minimumValue = 0
         slider.value = CGFloat(self.folioReader.currentFontSize.rawValue)
-        slider.addTarget(self, action: #selector(FolioReaderFontsMenu.sliderValueChanged(_:)), for: UIControlEvents.valueChanged)
+        slider.addTarget(self, action: #selector(FolioReaderFontsMenu.sliderValueChanged(_:)), for: UIControl.Event.valueChanged)
 
         // Force remove fill color
         slider.layer.sublayers?.forEach({ layer in
@@ -210,12 +212,12 @@ class FolioReaderFontsMenu: UIViewController, SMSegmentViewDelegate, UIGestureRe
         // Font icons
         let fontSmallView = UIImageView(frame: CGRect(x: 20, y: line2.frame.origin.y+14, width: 30, height: 30))
         fontSmallView.image = fontSmallNormal
-        fontSmallView.contentMode = UIViewContentMode.center
+        fontSmallView.contentMode = UIView.ContentMode.center
         menuView.addSubview(fontSmallView)
 
         let fontBigView = UIImageView(frame: CGRect(x: view.frame.width-50, y: line2.frame.origin.y+14, width: 30, height: 30))
         fontBigView.image = fontBigNormal
-        fontBigView.contentMode = UIViewContentMode.center
+        fontBigView.contentMode = UIView.ContentMode.center
         menuView.addSubview(fontBigView)
 
         // Only continues if user can change scroll direction
@@ -277,7 +279,7 @@ class FolioReaderFontsMenu: UIViewController, SMSegmentViewDelegate, UIGestureRe
             self.folioReader.nightMode = Bool(index == 1)
 
             UIView.animate(withDuration: 0.6, animations: {
-                self.menuView.backgroundColor = (self.folioReader.nightMode ? self.readerConfig.nightModeBackground : UIColor.white)
+                self.menuView.backgroundColor = (self.folioReader.nightMode ? self.readerConfig.nightModeBackground : self.readerConfig.daysModeNavBackground)
             })
 
         } else if segmentView.tag == 2 {
